@@ -1,0 +1,138 @@
+/* static/style.css */
+:root {
+    --bg-color: #111;
+    --bezel-color: #0a0a0a;
+    --flap-bg: #1e1e1e;
+    --text-color: #f0f0f0;
+    --shadow-intensity: 0.6;
+}
+
+body.theme-white {
+    --bg-color: #f4f4f4;
+    --bezel-color: #e0e0e0;
+    --flap-bg: #ffffff;
+    --text-color: #222;
+    --shadow-intensity: 0.2;
+}
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Courier New', Courier, monospace; /* Monospaced is crucial */
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+}
+
+/* The Frame */
+#board-container {
+    background-color: var(--bezel-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 2px solid #333;
+    display: grid;
+    gap: 4px; /* The gap between mechanical units */
+    perspective: 1000px;
+}
+
+/* Individual Character Unit */
+.split-flap {
+    position: relative;
+    width: 60px;
+    height: 90px;
+    font-size: 50px;
+    line-height: 90px;
+    text-align: center;
+    color: var(--text-color);
+    background-color: var(--flap-bg);
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0, var(--shadow-intensity));
+}
+
+/* The mechanical split line */
+.split-flap::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 5;
+    transform: translateY(-50%);
+}
+
+/* Flap Mechanics */
+.top, .bottom, .next-top, .next-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    background-color: var(--flap-bg);
+    backface-visibility: hidden;
+}
+
+.top, .next-top {
+    top: 0;
+    border-radius: 4px 4px 0 0;
+    transform-origin: bottom;
+}
+
+.bottom, .next-bottom {
+    bottom: 0;
+    border-radius: 0 0 4px 4px;
+    transform-origin: top;
+}
+
+/* Text alignment within flaps */
+.top span, .next-top span {
+    display: block;
+    height: 200%;
+    transform: translateY(0);
+}
+
+.bottom span, .next-bottom span {
+    display: block;
+    height: 200%;
+    transform: translateY(-50%);
+}
+
+/* Animation Classes */
+.flipping .top {
+    animation: flip-top 0.15s ease-in forwards;
+    z-index: 3;
+}
+
+.flipping .next-bottom {
+    animation: flip-bottom 0.15s ease-out 0.15s forwards; /* Delay match */
+    z-index: 2;
+}
+
+@keyframes flip-top {
+    100% { transform: rotateX(-90deg); }
+}
+
+@keyframes flip-bottom {
+    0% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+/* Admin Page Styles */
+.admin-panel {
+    background: #fff;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    border-radius: 8px;
+    font-family: sans-serif;
+}
+.control-group { margin-bottom: 1.5rem; }
+label { display: block; font-weight: bold; margin-bottom: 0.5rem; }
+input, select { width: 100%; padding: 0.5rem; }
+button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; font-size: 1.1rem; }
+button:hover { background: #0056b3; }

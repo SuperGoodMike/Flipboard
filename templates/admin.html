@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Board Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>body { overflow: auto; height: auto; display: block; background: #eee; }</style>
+</head>
+<body>
+    <div class="admin-panel">
+        <h1>Flipboard Control</h1>
+        
+        <div class="control-group">
+            <label>Message</label>
+            <input type="text" id="msgInput" placeholder="ENTER MESSAGE HERE" maxlength="132">
+            <button onclick="sendMessage()">Send to Board</button>
+        </div>
+
+        <hr>
+
+        <div class="control-group">
+            <h3>Configuration</h3>
+            <label>Rows</label>
+            <input type="number" id="rows" value="6">
+            <label>Columns</label>
+            <input type="number" id="cols" value="22">
+            <label>Theme</label>
+            <select id="theme">
+                <option value="black">Vestaboard Black</option>
+                <option value="white">Vestaboard White</option>
+            </select>
+            <br><br>
+            <button onclick="saveConfig()">Save Settings</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const msg = document.getElementById('msgInput').value;
+            fetch('/api/message', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: msg})
+            });
+        }
+
+        function saveConfig() {
+            const rows = document.getElementById('rows').value;
+            const cols = document.getElementById('cols').value;
+            const theme = document.getElementById('theme').value;
+            fetch('/api/configure', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({rows, cols, theme})
+            }).then(() => alert("Configuration Saved!"));
+        }
+    </script>
+</body>
+</html>
