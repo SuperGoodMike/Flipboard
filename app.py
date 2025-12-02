@@ -9,7 +9,11 @@ st.set_page_config(layout="wide", page_title="Digital Flipboard", initial_sideba
 
 # Initialize Session State for Playlist
 if 'playlist_items' not in st.session_state:
-    st.session_state['playlist_items'] = ["WELCOME TO OMNI BOARD", "INSPIRE FROM ANYWHERE", "NOSTALGIA REIMAGINED"]
+    st.session_state['playlist_items'] = [
+        "WELCOME TO\nOMNI BOARD", 
+        "INSPIRE FROM\nANYWHERE", 
+        "NOSTALGIA\nREIMAGINED"
+    ]
 
 # --------------------------------------------------------------------------
 # ADMIN PANEL (Sidebar)
@@ -19,11 +23,12 @@ with st.sidebar:
     
     # --- Message Playlist Manager ---
     st.markdown("### 📝 Message Playlist")
+    st.caption("Type text. Press Enter for new lines.")
     
-    # Display Dynamic Input Boxes
+    # Display Dynamic Input Boxes (Text Areas for Multi-line)
     updated_playlist = []
     for i, item in enumerate(st.session_state['playlist_items']):
-        val = st.text_input(f"Message {i+1}", value=item, key=f"msg_input_{i}")
+        val = st.text_area(f"Message {i+1}", value=item, key=f"msg_input_{i}", height=100)
         updated_playlist.append(val.upper())
     
     # Update state with current inputs
@@ -73,7 +78,6 @@ with st.sidebar:
             return out
         return ""
 
-    # These buttons overwrite the playlist with a single Art Frame
     if col_art1.button("Ocean"):
         st.session_state['playlist_items'] = [generate_pattern("OCEAN", rows, cols)]
         st.rerun()
@@ -111,42 +115,64 @@ with st.sidebar:
     st.info("Double-click the board to toggle Full Screen.")
 
 # --------------------------------------------------------------------------
-# LOGIC: MESSAGE PADDING & FORMATTING
+# LOGIC: MULTI-LINE MESSAGE FORMATTING
 # --------------------------------------------------------------------------
-# Clean list: remove empty strings if any
 clean_playlist = [msg for msg in st.session_state['playlist_items'] if msg]
 if not clean_playlist:
     clean_playlist = [" "]
 
 formatted_playlist = []
 
-for msg in clean_playlist:
-    # Truncate if message is too long for the entire board
-    if len(msg) > (rows * cols):
-        msg = msg[:rows*cols]
-        
-    final_msg = ""
-    # Break message into chunks based on column width
-    chunks = [msg[i:i+cols] for i in range(0, len(msg), cols)]
+for raw_msg in clean_playlist:
+    final_string = ""
+    current_rows = 0
     
-    # Add empty rows if message is shorter than board height
-    if len(chunks) < rows:
-        chunks += [""] * (rows - len(chunks))
-        
-    for chunk in chunks:
-        chunk = chunk[:cols] 
-        if justification == "Center":
-            pad_len = cols - len(chunk)
-            left_pad = pad_len // 2
-            right_pad = pad_len - left_pad
-            final_msg += (" " * left_pad) + chunk + (" " * right_pad)
-        elif justification == "Right":
-            pad_len = cols - len(chunk)
-            final_msg += (" " * pad_len) + chunk
-        else: # Left
-            final_msg += chunk.ljust(cols)
+    # 1. Split by manual newlines first
+    manual_lines = raw_msg.split('\n')
+    
+    for line in manual_lines:
+        if current_rows >= rows:
+            break
             
-    formatted_playlist.append(final_msg)
+        # 2. Handle lines longer than 'cols' (Auto-wrap)
+        # If a single line is "HELLO WORLD THIS IS LONG", and cols=10
+        # chunks = ["HELLO WORL", "D THIS IS ", "LONG"]
+        if len(line) > 0:
+            line_chunks = [line[i:i+cols] for i in range(0, len(line), cols)]
+        else:
+            line_chunks = [""] # Handle empty newlines
+
+        for chunk in line_chunks:
+            if current_rows >= rows:
+                break
+                
+            # 3. Apply Justification/Padding to the chunk
+            # Ensure chunk is not longer than cols (safety)
+            chunk = chunk[:cols]
+            
+            pad_len = cols - len(chunk)
+            
+            if justification == "Center":
+                left_pad = pad_len // 2
+                right_pad = pad_len - left_pad
+                row_str = (" " * left_pad) + chunk + (" " * right_pad)
+            elif justification == "Right":
+                row_str = (" " * pad_len) + chunk
+            else: # Left
+                row_str = chunk.ljust(cols)
+            
+            final_string += row_str
+            current_rows += 1
+
+    # 4. Fill remaining rows on the board with empty space
+    remaining_rows = rows - current_rows
+    if remaining_rows > 0:
+        final_string += (" " * cols) * remaining_rows
+    
+    # 5. Truncate if logical error made it too long
+    final_string = final_string[:rows * cols]
+    
+    formatted_playlist.append(final_string)
 
 # --------------------------------------------------------------------------
 # THE FLIPBOARD ENGINE (HTML/CSS/JS)
@@ -214,7 +240,6 @@ html_code = f"""
             justify-content: center;
             align-items: center;
             
-            /* Responsive font size multiplied by user slider */
             font-size: calc(4vmin * var(--font-scale)); 
             
             font-weight: var(--font-weight);
@@ -261,9 +286,7 @@ html_code = f"""
     <div id="board-container" title="Double Click for Full Screen"></div>
 
     <script>
-        // Safe alphabet for animation phase to prevent glitch glyphs
         const SAFE_CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        
         const ROWS = {rows};
         const COLS = {cols};
         const PLAYLIST = {formatted_playlist};
@@ -311,7 +334,6 @@ html_code = f"""
 
                 this.isFlipping = true;
 
-                // Pick a visual character for the flip (noise) to prevent ? glitches
                 let currentIndex = SAFE_CHARS.indexOf(this.currentChar);
                 if (currentIndex === -1) currentIndex = 0;
                 let nextIndex = (currentIndex + 1) % SAFE_CHARS.length;
@@ -329,7 +351,6 @@ html_code = f"""
                     this.currentChar = nextVisualChar;
                     this.element.classList.remove('flipping');
 
-                    // Random chance to snap to target or keep spinning
                     if (Math.random() > 0.85 || this.currentChar === this.targetChar) {{
                          this.currentChar = this.targetChar;
                          this.updateDOM(this.targetChar, this.targetChar);
@@ -402,7 +423,6 @@ st.markdown("""
         display: block;
     }
     footer {visibility: hidden;}
-    /* Show header only on hover */
     header {opacity: 0; transition: opacity 0.3s;}
     header:hover {opacity: 1;}
 </style>
