@@ -11,8 +11,7 @@ st.set_page_config(layout="wide", page_title="Digital Flipboard", initial_sideba
 if 'playlist_items' not in st.session_state:
     st.session_state['playlist_items'] = [
         "WELCOME TO\nOMNI BOARD", 
-        "INSPIRE FROM\nANYWHERE", 
-        "NOSTALGIA\nREIMAGINED"
+        "INSPIRE FROM\nANYWHERE"
     ]
 
 # --------------------------------------------------------------------------
@@ -21,55 +20,63 @@ if 'playlist_items' not in st.session_state:
 with st.sidebar:
     st.header("Flipboard Controls")
     
+    # --- Configuration ---
+    st.subheader("⚙️ Grid Size")
+    # We place grid size first so Art generation knows the dimensions
+    rows = st.number_input("Rows", min_value=1, max_value=20, value=6)
+    cols = st.number_input("Columns", min_value=1, max_value=50, value=22)
+    
+    st.markdown("---")
+    
     # --- Message Playlist Manager ---
     st.markdown("### 📝 Message Playlist")
-    st.caption("Type text. Press Enter for new lines.")
     
     # Display Dynamic Input Boxes (Text Areas for Multi-line)
     updated_playlist = []
+    # Iterate over a copy to allow safe modification if needed
     for i, item in enumerate(st.session_state['playlist_items']):
-        val = st.text_area(f"Message {i+1}", value=item, key=f"msg_input_{i}", height=100)
+        # We use a unique key for each text area
+        val = st.text_area(f"Message {i+1}", value=item, key=f"msg_input_{i}", height=68)
         updated_playlist.append(val.upper())
     
-    # Update state with current inputs
+    # Sync state
     st.session_state['playlist_items'] = updated_playlist
 
     # Playlist Action Buttons
     col_add, col_reset = st.columns(2)
-    if col_add.button("➕ Add Message"):
+    if col_add.button("➕ Add New"):
         st.session_state['playlist_items'].append("")
         st.rerun()
         
     if col_reset.button("🗑️ Clear All"):
-        st.session_state['playlist_items'] = [" "]
+        st.session_state['playlist_items'] = [""]
         st.rerun()
 
     cycle_speed = st.slider("Cycle Speed (Seconds)", 2, 60, 8)
 
     st.markdown("---")
-    
-    # --- Configuration ---
-    st.subheader("⚙️ Grid Size")
-    rows = st.number_input("Rows", min_value=1, max_value=20, value=6)
-    cols = st.number_input("Columns", min_value=1, max_value=50, value=22)
-    
-    st.markdown("---")
 
     # --- Art Presets ---
     st.subheader("🎨 Art Presets")
+    st.caption("Clicking adds art to the end of your playlist.")
     col_art1, col_art2, col_art3 = st.columns(3)
     
     def generate_pattern(type, rows, cols):
         if type == "OCEAN":
+            # Random scattering of blue and wave emojis
             return "".join([random.choice("🟦🟦🟦🌊") for _ in range(rows*cols)])
         elif type == "SUNRISE":
+            # Vertical gradient approximation
             colors = ["⬛", "🟥", "🟧", "🟨", "⬜"]
             out = ""
             for r in range(rows):
                 idx = int((r / rows) * len(colors))
+                # Safe index check
+                idx = min(idx, len(colors)-1)
                 out += colors[idx] * cols
             return out
         elif type == "RAINBOW":
+            # Horizontal stripes
             colors = ["🟥","🟧","🟨","🟩","🟦","🟪"]
             out = ""
             for r in range(rows):
@@ -78,14 +85,20 @@ with st.sidebar:
             return out
         return ""
 
+    # ACTION: APPEND instead of overwrite
     if col_art1.button("Ocean"):
-        st.session_state['playlist_items'] = [generate_pattern("OCEAN", rows, cols)]
+        art_str = generate_pattern("OCEAN", rows, cols)
+        st.session_state['playlist_items'].append(art_str)
         st.rerun()
+        
     if col_art2.button("Sunrise"):
-        st.session_state['playlist_items'] = [generate_pattern("SUNRISE", rows, cols)]
+        art_str = generate_pattern("SUNRISE", rows, cols)
+        st.session_state['playlist_items'].append(art_str)
         st.rerun()
+        
     if col_art3.button("Rainbow"):
-        st.session_state['playlist_items'] = [generate_pattern("RAINBOW", rows, cols)]
+        art_str = generate_pattern("RAINBOW", rows, cols)
+        st.session_state['playlist_items'].append(art_str)
         st.rerun()
 
     st.markdown("---")
@@ -93,12 +106,12 @@ with st.sidebar:
     # --- Style Options ---
     st.subheader("✨ Style Options")
     
-    font_family = st.selectbox("Font Type", [
-        "Courier New, monospace", 
-        "Arial, sans-serif", 
-        "Roboto, sans-serif", 
-        "Impact, sans-serif",
-        "Segoe UI Emoji, Apple Color Emoji, sans-serif" 
+    font_family_selection = st.selectbox("Font Type", [
+        "Courier New", 
+        "Arial", 
+        "Roboto", 
+        "Impact",
+        "Verdana" 
     ])
     
     font_size_mult = st.slider("Font Size Adjustment", 0.5, 2.0, 1.0, help="Scale text size up or down")
@@ -135,20 +148,21 @@ for raw_msg in clean_playlist:
             break
             
         # 2. Handle lines longer than 'cols' (Auto-wrap)
-        # If a single line is "HELLO WORLD THIS IS LONG", and cols=10
-        # chunks = ["HELLO WORL", "D THIS IS ", "LONG"]
         if len(line) > 0:
             line_chunks = [line[i:i+cols] for i in range(0, len(line), cols)]
         else:
-            line_chunks = [""] # Handle empty newlines
+            line_chunks = [""] 
 
         for chunk in line_chunks:
             if current_rows >= rows:
                 break
                 
             # 3. Apply Justification/Padding to the chunk
-            # Ensure chunk is not longer than cols (safety)
             chunk = chunk[:cols]
+            
+            # IMPORTANT: Emojis are typically length 1 in Python strings (mostly),
+            # but if they aren't, justification might look slightly off in the preview string.
+            # However, the grid mapping in JS handles them character-by-character.
             
             pad_len = cols - len(chunk)
             
@@ -169,7 +183,7 @@ for raw_msg in clean_playlist:
     if remaining_rows > 0:
         final_string += (" " * cols) * remaining_rows
     
-    # 5. Truncate if logical error made it too long
+    # 5. Truncate to ensure perfect grid fit
     final_string = final_string[:rows * cols]
     
     formatted_playlist.append(final_string)
@@ -188,7 +202,10 @@ html_code = f"""
             --bezel-color: #0a0a0a;
             --flap-bg: {flap_color};
             --text-color: {text_color};
-            --font-family: {font_family};
+            
+            /* FONT STACK FIX: Force Emoji fonts to load if main font misses the glyph */
+            --font-family: '{font_family_selection}', "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+            
             --font-weight: {'bold' if is_bold else 'normal'};
             --font-style: {'italic' if is_italic else 'normal'};
             --shadow-intensity: 0.4;
@@ -286,7 +303,9 @@ html_code = f"""
     <div id="board-container" title="Double Click for Full Screen"></div>
 
     <script>
-        const SAFE_CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // "Visual Noise" characters for animation. Pure Alphanumeric to prevent missing glyphs during flip.
+        const SAFE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        
         const ROWS = {rows};
         const COLS = {cols};
         const PLAYLIST = {formatted_playlist};
@@ -334,25 +353,32 @@ html_code = f"""
 
                 this.isFlipping = true;
 
-                let currentIndex = SAFE_CHARS.indexOf(this.currentChar);
-                if (currentIndex === -1) currentIndex = 0;
-                let nextIndex = (currentIndex + 1) % SAFE_CHARS.length;
-                let nextVisualChar = SAFE_CHARS[nextIndex];
+                // Animation Logic:
+                // 1. Pick a random "Safe" character to show during the flip motion (blur effect)
+                // 2. This avoids showing '?' boxes if the browser tries to render an emoji in a non-emoji font during transition
+                let nextVisualChar = SAFE_CHARS[Math.floor(Math.random() * SAFE_CHARS.length)];
 
                 const nextTop = this.element.querySelector('.next-top span');
                 const nextBottom = this.element.querySelector('.next-bottom span');
+                
+                // During animation, show the Safe Char
                 nextTop.innerText = nextVisualChar;
                 nextBottom.innerText = nextVisualChar;
 
                 this.element.classList.add('flipping');
 
                 setTimeout(() => {{
+                    // Frame complete. Update static flaps to the char we just flipped to
                     this.updateDOM(nextVisualChar, nextVisualChar);
                     this.currentChar = nextVisualChar;
                     this.element.classList.remove('flipping');
 
+                    // Check if we should stop
+                    // 15% chance to snap to target to simulate mechanical randomness
+                    // OR if we somehow accidentally landed on the target
                     if (Math.random() > 0.85 || this.currentChar === this.targetChar) {{
                          this.currentChar = this.targetChar;
+                         // Force the actual target char (Emoji or Text) into the DOM
                          this.updateDOM(this.targetChar, this.targetChar);
                          this.isFlipping = false;
                     }} else {{
@@ -389,6 +415,7 @@ html_code = f"""
         function cycleMessages() {{
             if (PLAYLIST.length === 0) return;
             const msg = PLAYLIST[msgIndex];
+            // Split using Array.from ensures surrogate pair Emojis are treated as 1 char
             const charArray = Array.from(msg);
             
             grid.forEach((flap, index) => {{
