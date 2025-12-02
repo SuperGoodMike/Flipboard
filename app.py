@@ -544,12 +544,12 @@ X8OzTLfpinpuKW7Z44XUoqXWBSpTlTb8dcXeXp3UDnfo/Bh32NswrO04Bd+t+bk3p9e9vJM5qT75MYj
 AiRTb7in+dCxvt38BwIXqVDTmcjBE9uLpK8dTZ4uhkl1ViUsVFemtCEE8iyC9nMQGG+qfvKjHe6j7C9+
 YbLyjoyDml8z05aXBM+U5ZmA1Ugs1j0llSp34jZ2XAtdijRw6XWeXpne6Nfvmk3VPEXWyPoM0pBOVNR
 jNit/PD1QzkcEoTSijtRSNbGCWqKjPRun5133ST2hLrdqxC9y5ZaqDOE3PiQHayU+hUfXK/xHqjXfaz
-44Ccyy/GYLjuMyz/b7mhWfXtiLDPSVQ2LNfeSxlPJ+hCftneFu8UFsForoVMxcB7MXMzV1gFfNipffE
-ep0Od+plrU4jShLxEikQoKcxYCykGSAC+q+MjfPlzvNpkvcl1WqQADWhCCeFYQi5GkT9Wz+Bkcp5dVfZ
-aD1bk2vJ8f0uD5R+krnfnzf7TrrZcRiU8Am/SMukC35Tey4AgAWGSGo7Oec5By0zXik5AkJOltV8o1h
-gMls3Qs0V7DvpkiyQY0QxBbIotf1T4ba57qbvHe0jV3k9ORgp2tC2uiibOlcwVFEt8+lbmjAltYPS84
-L8R3U/rsQMX6e4h1nNOiBzBHkQoT1vM/Bq/iGLcYx1Jpuq8NnZMhiFYEdVCe3Fb6rABetBxcMTelgWd
-ZfCSAA4hGpTVOZ6CYSBYZDES/i8lUrrxU3eISJKQioJQNt7rXzq17t0S3+VY3zVp6sj7cZii8Bzas
+44Ccyy/GYLjuMyz/b7mhWfXtiLDPSVQ2LNfeSxlPJ+hCftneFu8UFsForoHrOVMxcB7MXMzV1gFfNip
+ffEep0Od+plrU4jShLxEikQoKcxYCykGSAC+q+MjfPlzvNpkvcl1WqQADWhCCeFYQi5GkT9Wz+Bkcp5d
+VrZaD1bk2vJ8f0uD5R+krnfnzf7TrrZcRiU8Am/SMukC35Tey4AgAWGSGo7Oec5By0zXik5AkJOltV8o
+1hgMls3Qs0V7DvpkiyQY0QxBbIotf1T4ba57qbvHe0jV3k9ORgp2tC2uiibOlcwVFEt8+lbmjAltYPS
+84L8R3U/rsQMX6e4h1nNOiBzBHkQoT1vM/Bq/iGLcYx1Jpuq8NnZMhiFYEdVCe3Fb6rABetBxcMTelg
+WdZfCSAA4hGpTVOZ6CYSBYZDES/i8lUrrxU3eISJKQioJQNt7rXzq17t0S3+VY3zVp6sj7cZii8Bzas
 520r4iUT2XXSqIK5q5QfPRVL7cO7Ak806YBEx2y4zBZo560dDs2a/CwDfHQWPhjsWbFrQ5SU2ziAJT4
 NOslb+GTkwFbC1521DrpAokzxaR8E2yTZPn3ouxH542pK03qQts2JLNEM/c/cafjU3S9t0emxqnYvCZq
 b1mHFmmTLZTXqxoYAdEQhaxZ+S37mJKrkLv2NIrMriSgD1Q7uCsgPAODYq0rXoLTuoKW5ziLCZvRkznaP
@@ -602,7 +602,7 @@ cvk09KGKFLxGqRzwQ1BkdCC4XimilhVl8NCMFq5dwxGSiYqam6oiTJPcD20bIooVqUyncns88ll5Hj2d
 cNchb1wnZt4M8qn+s+5178mcvFwqKTJO2nH2WBpmd4NLJqhI+POXV4g9KS9D99e/kmdhN4Z/egyjgkwFd
 LvvTQKaLcUqiiamCOayqRdu+zZlTzsSehYfTllYdWTHjdRHHjnUcOqUgS7ysSSBntJ7btJFbaIKw0Kg
 jsYUowpsVlMYCBZOMD5Nnd1q4MwNNXIJ4aVBcMGmEmBvOtPXdMBOK7Eoyu/Hf1NFvflGy76ZWX7VUQSAA
-LKJGRBwF0tWUwCcBE9yoBQ86MDrIEvR5jfEFvaJwQligSjcnvKHJp+rJPGfw8CfAOd/G0GDoRI1FiEJj
+LKJGRBwF0tWUwCcBE9yoBQ86MDrIEvR5jfEFvaJwQligSjcnvKHJp+rJPGfw8CfAOd/G0GDcC0RI1FiEJj
 QFjIMxr18d8ZdXlYqElRdQIlJUUwDkhukQd3rjq+zyd1a+7LmWM9J7a9PNtwtdzPnet4mqWWzYWUZxh
 0gC4NGijZpw932R81WlQcQ8Habu1Sss72kF6ZleMBRv+A4nVPLddb5Zzz9G3nM0EezhLxunoWigonqa2
 tD0ENcNcK50pYos001+x9VlgfqS4R7ywkrmaAi5rcBDiXhjVW16bVueppQApKmAkuencVMpVs9N1ctN
@@ -648,35 +648,35 @@ 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
-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
+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
@@ -733,16 +733,13 @@ with st.sidebar:
     st.header("Flipboard Controls")
     
     st.markdown("### 📝 Message Playlist")
-    # Using a text area for multiple lines (playlist)
     playlist_input = st.text_area(
-        "Enter messages (one per line). The board will cycle through them.",
+        "Enter messages (one per line).",
         value=st.session_state.get('playlist_raw', "WELCOME TO OMNI BOARD\nINSPIRE FROM ANYWHERE"),
         height=150
     )
     st.session_state['playlist_raw'] = playlist_input.upper()
     
-    # Process playlist into a list
-    # Filter out empty lines
     playlist = [line.strip() for line in playlist_input.upper().split('\n') if line.strip()]
     if not playlist:
         playlist = [" "]
@@ -753,17 +750,13 @@ with st.sidebar:
     st.subheader("🎨 Art Presets")
     col_art1, col_art2, col_art3 = st.columns(3)
     
-    # Helper to generate block patterns
     def generate_pattern(type, rows, cols):
         if type == "OCEAN":
-            # Blue and Wave blocks
             return "".join([random.choice("🟦🟦🟦🌊") for _ in range(rows*cols)])
         elif type == "SUNRISE":
-            # Gradient approximation
             colors = ["⬛", "🟥", "🟧", "🟨", "⬜"]
             out = ""
             for r in range(rows):
-                # Pick a color based on row height
                 idx = int((r / rows) * len(colors))
                 out += colors[idx] * cols
             return out
@@ -798,14 +791,13 @@ with st.sidebar:
     st.markdown("---")
     st.subheader("✨ Style Options")
     
-    # Font Settings
-    font_family = st.selectbox("Font Type", ["Courier New", "Arial", "Roboto", "Times New Roman", "Verdana", "Impact"])
+    # Updated Font List to include Emoji-friendly fonts
+    font_family = st.selectbox("Font Type", ["Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif", "Courier New, monospace", "Arial", "Roboto", "Impact"])
     font_size_mult = st.slider("Font Size Scaling", 0.5, 1.5, 1.0)
     is_bold = st.checkbox("Bold Text", value=False)
     is_italic = st.checkbox("Italic Text", value=False)
     justification = st.selectbox("Justification", ["Left", "Center", "Right"])
     
-    # Colors
     col1, col2 = st.columns(2)
     with col1:
         text_color = st.color_picker("Text Color", "#F0F0F0")
@@ -818,27 +810,19 @@ with st.sidebar:
 # --------------------------------------------------------------------------
 # LOGIC: MESSAGE PADDING & FORMATTING
 # --------------------------------------------------------------------------
-# We format the playlist in Python to ensure it fits the grid perfectly
 formatted_playlist = []
 
 for msg in playlist:
-    # 1. Truncate if total length exceeds grid
     if len(msg) > (rows * cols):
         msg = msg[:rows*cols]
         
-    # 2. Pad logic
     final_msg = ""
-    # Split by explicit newlines if user typed them in a single line (rare but possible)
-    # But usually we treat the whole string as one block. 
-    # Let's chunk it by columns.
     chunks = [msg[i:i+cols] for i in range(0, len(msg), cols)]
     
-    # Fill remaining rows with empty strings
     if len(chunks) < rows:
         chunks += [""] * (rows - len(chunks))
         
     for chunk in chunks:
-        # Ensure chunk is exactly col width
         chunk = chunk[:cols] 
         if justification == "Center":
             pad_len = cols - len(chunk)
@@ -867,10 +851,22 @@ html_code = f"""
             --bezel-color: #0a0a0a;
             --flap-bg: {flap_color};
             --text-color: {text_color};
-            --font-family: '{font_family}', monospace;
+            --font-family: {font_family};
             --font-weight: {'bold' if is_bold else 'normal'};
             --font-style: {'italic' if is_italic else 'normal'};
             --shadow-intensity: 0.6;
+            
+            /* Responsive Calculations */
+            --cols: {cols};
+            --rows: {rows};
+            /* Calculate cell size based on viewport width/height to fit perfectly */
+            /* We leave a 5% margin for the bezel/border */
+            --cell-w: calc(90vw / var(--cols));
+            /* Aspect ratio approx 2:3 */
+            --cell-h: calc(var(--cell-w) * 1.5);
+            /* Check if height constrains us more than width */
+            --cell-h-constrained: calc(90vh / var(--rows));
+            --cell-w-constrained: calc(var(--cell-h-constrained) / 1.5);
         }}
 
         body {{
@@ -887,29 +883,38 @@ html_code = f"""
 
         #board-container {{
             background-color: var(--bezel-color);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 2vmin;
+            border-radius: 1vmin;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             border: 2px solid #333;
             display: grid;
-            gap: 4px;
+            gap: 0.3vmin;
             perspective: 1000px;
             grid-template-columns: repeat({cols}, 1fr); 
             cursor: pointer;
+            
+            /* Logic to pick the smaller of the two calculated dimensions so it always fits */
+            width: min(calc(var(--cols) * var(--cell-w)), calc(var(--cols) * var(--cell-w-constrained)));
         }}
 
         .split-flap {{
             position: relative;
-            width: {40 * font_size_mult}px; 
-            height: {60 * font_size_mult}px;
-            font-size: {35 * font_size_mult}px;
-            line-height: {60 * font_size_mult}px;
+            /* Allow grid to control width, calculate height based on aspect ratio */
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            
+            font-size: min(calc(var(--cell-w) * 0.8), calc(var(--cell-w-constrained) * 0.8));
+            /* Line height must match height for vertical centering */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
             font-weight: var(--font-weight);
             font-style: var(--font-style);
             text-align: center;
             color: var(--text-color);
             background-color: var(--flap-bg);
-            border-radius: 3px;
+            border-radius: 0.3vmin;
             box-shadow: inset 0 0 5px rgba(0,0,0, var(--shadow-intensity));
         }}
 
@@ -934,10 +939,10 @@ html_code = f"""
             backface-visibility: hidden;
         }}
 
-        .top, .next-top {{ top: 0; border-radius: 3px 3px 0 0; transform-origin: bottom; }}
-        .bottom, .next-bottom {{ bottom: 0; border-radius: 0 0 3px 3px; transform-origin: top; }}
+        .top, .next-top {{ top: 0; border-radius: 0.3vmin 0.3vmin 0 0; transform-origin: bottom; }}
+        .bottom, .next-bottom {{ bottom: 0; border-radius: 0 0 0.3vmin 0.3vmin; transform-origin: top; }}
         
-        .top span, .next-top span {{ display: block; height: 200%; }}
+        .top span, .next-top span {{ display: block; height: 200%; transform: translateY(0); }}
         .bottom span, .next-bottom span {{ display: block; height: 200%; transform: translateY(-50%); }}
 
         .flipping .top {{ animation: flip-top 0.15s ease-in forwards; z-index: 3; }}
@@ -946,15 +951,15 @@ html_code = f"""
         @keyframes flip-top {{ 100% {{ transform: rotateX(-90deg); }} }}
         @keyframes flip-bottom {{ 0% {{ transform: rotateX(90deg); }} 100% {{ transform: rotateX(0deg); }} }}
         
-        /* Audio Init Overlay */
         #audio-init {{
             position: absolute;
             top: 10px;
             left: 10px;
             color: #555;
-            font-size: 10px;
-            opacity: 0.5;
+            font-size: 12px;
+            opacity: 0.7;
             pointer-events: none;
+            z-index: 10000;
         }}
     </style>
 </head>
@@ -963,7 +968,7 @@ html_code = f"""
     <div id="board-container" title="Double Click for Full Screen"></div>
 
     <script>
-        // Character Set including emojis for Art Mode
+        // Extended Charset including emojis
         const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&?.:-🟥🟧🟨🟩🟦🟪⬛⬜🟫🌊";
         const ROWS = {rows};
         const COLS = {cols};
@@ -971,7 +976,6 @@ html_code = f"""
         const CYCLE_SPEED = {cycle_speed * 1000};
         const SOUND_ENABLED = {str(enable_sound).lower()};
         
-        // Sound Configuration
         const AUDIO_SRC = "data:audio/mp4;base64,{FLIP_SOUND_B64.replace('\n', '')}";
         let audioContextAllowed = false;
 
@@ -1013,12 +1017,29 @@ html_code = f"""
             }}
 
             setTarget(char) {{
-                // If char isn't in our list, default to space
-                if (!CHARS.includes(char) && !isEmoji(char)) char = " ";
-                this.targetChar = char;
+                // Logic fix: Don't flip through emojis if char not found.
+                // If the char is not in CHARS, snap to it immediately to avoid '?' stuck state
+                // or just accept it as target.
+                
+                // Normal Text Handling
+                if (CHARS.includes(char)) {{
+                    this.targetChar = char;
+                }} else {{
+                    // Fallback for special chars/emojis not in wheel:
+                    // Force set it without animation loop to prevent broken state
+                    this.targetChar = char;
+                    this.currentChar = char;
+                    this.updateDOM(char);
+                    return; 
+                }}
+
                 if (this.currentChar !== this.targetChar && !this.isFlipping) {{
                     this.flip();
                 }}
+            }}
+            
+            updateDOM(char) {{
+                this.element.querySelectorAll('span').forEach(el => el.innerText = char);
             }}
 
             flip() {{
@@ -1027,15 +1048,21 @@ html_code = f"""
                     return;
                 }}
                 this.isFlipping = true;
-                
                 playClick();
 
                 let currentIndex = CHARS.indexOf(this.currentChar);
-                // Handle case where char isn't found
                 if (currentIndex === -1) currentIndex = 0;
 
                 let nextIndex = (currentIndex + 1) % CHARS.length;
                 let nextChar = CHARS[nextIndex];
+
+                // If we are chasing a target that IS in the list
+                if (CHARS.includes(this.targetChar)) {{
+                     // Normal Flip
+                }} else {{
+                     // Target isn't in list (rare edge case), snap to it
+                     nextChar = this.targetChar;
+                }}
 
                 const nextTop = this.element.querySelector('.next-top span');
                 const nextBottom = this.element.querySelector('.next-bottom span');
@@ -1053,18 +1080,12 @@ html_code = f"""
                     this.element.classList.remove('flipping');
 
                     if (this.currentChar !== this.targetChar) {{
-                        // Faster flipping for art/emojis to load quicker
-                        setTimeout(() => this.flip(), 20); 
+                        setTimeout(() => this.flip(), 30); 
                     }} else {{
                         this.isFlipping = false;
                     }}
-                }}, 150); // Faster animation speed (150ms)
+                }}, 150);
             }}
-        }}
-        
-        // Helper to detect if a char is likely an emoji (simple check)
-        function isEmoji(char) {{
-            return /\\p{{Extended_Pictographic}}/u.test(char);
         }}
 
         let grid = [];
@@ -1080,23 +1101,18 @@ html_code = f"""
                 container.appendChild(div);
                 grid.push(new SplitFlap(div));
             }}
-            
-            // Start the cycle loop
             cycleMessages();
         }}
 
         let msgIndex = 0;
         function cycleMessages() {{
             if (PLAYLIST.length === 0) return;
-            
             const msg = PLAYLIST[msgIndex];
             
-            // Spread message to grid
+            // Use Array.from to correctly split emojis
+            const charArray = Array.from(msg);
+            
             grid.forEach((flap, index) => {{
-                // Use grapheme splitter logic for emojis if needed, 
-                // but standard indexing usually works for simple emojis in modern JS
-                // We convert string to array to safely handle emoji characters as single units
-                const charArray = Array.from(msg);
                 if (index < charArray.length) {{
                     flap.setTarget(charArray[index]);
                 }} else {{
@@ -1105,7 +1121,6 @@ html_code = f"""
             }});
 
             msgIndex = (msgIndex + 1) % PLAYLIST.length;
-            
             setTimeout(cycleMessages, CYCLE_SPEED);
         }}
 
@@ -1120,25 +1135,23 @@ st.markdown("""
     .block-container {
         padding: 0 !important;
         max-width: 100%;
+        overflow: hidden;
     }
     iframe {
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
         border: none;
         display: block;
     }
-    /* Hide Streamlit Footer */
     footer {visibility: hidden;}
-    
-    /* Full Screen Button Overlay */
-    .fullscreen-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9999;
-        opacity: 0.3;
+    header {visibility: hidden;} /* Re-hide header for full immersion since arrow logic is tricky in CSS alone */
+    /* Hover area to show sidebar arrow if needed */
+    [data-testid="stSidebarNav"] {
+        display: block !important;
+        opacity: 0;
         transition: opacity 0.3s;
     }
-    .fullscreen-btn:hover {
+    [data-testid="stSidebarNav"]:hover {
         opacity: 1;
     }
 </style>
