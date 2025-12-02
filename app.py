@@ -1,6 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
-import math
+import random
 
 # --------------------------------------------------------------------------
 # AUDIO DATA (MP4/AAC)
@@ -552,20 +552,20 @@ L8R3U/rsQMX6e4h1nNOiBzBHkQoT1vM/Bq/iGLcYx1Jpuq8NnZMhiFYEdVCe3Fb6rABetBxcMTelgWd
 ZfCSAA4hGpTVOZ6CYSBYZDES/i8lUrrxU3eISJKQioJQNt7rXzq17t0S3+VY3zVp6sj7cZii8Bzas
 520r4iUT2XXSqIK5q5QfPRVL7cO7Ak806YBEx2y4zBZo560dDs2a/CwDfHQWPhjsWbFrQ5SU2ziAJT4
 NOslb+GTkwFbC1521DrpAokzxaR8E2yTZPn3ouxH542pK03qQts2JLNEM/c/cafjU3S9t0emxqnYvCZq
-b1mHFmmTLZTXqxoYAdEQhaxZ+S37mJKrkLv2NIrMriSgD1Q7uCsgPAODYq0rXoLTuoKW5ziLCZvRkzn
-aPU+DHXM9bEV7BAAEzTmkgiIZHXXG433x57d5dWyWiUukoF1RbRFkcrlQpsZMwn7TCsmlMnhB2TPSb
-DYfnfPoc2YtXjNZDWoYRtezL38uB4kl88sYYV1yd3//sSrMeO9QY+uh65MaLtUmOvw5Vu2nHQb4RbIt
-M8aNdGzLJymCtL6DzzmAtsjXXSoiYUjSfwwB6UilnoOYG0WWV2X/ekmOl50WtZLSGoMgsK6wnokR5oi
-h3Y3WmaNczQCTHStl/H7KTo8KEQ4z4mlefcsFS+/pzxZYQyizQRlEpAnbDrKozHAWIW667leSrKFNfD
-UlJrRAAcAhGpTdMhLFILIIwBfXne2qvON+C5CQq8uUlRSFNaE3HjaCZ9OlYn4uwcCz9QntT6vr1w83rT
-Sve1LbD0/XeyVbY9ISaP0pe9p3BI3ZbTxKbSyJ1VghJGU21SSCXKBEoDrpKaAptqjENvDyvHbRTs317
-jpi0qhu4IFDBUVi7WutshL2mMm0DcucN6Oq/KbHpCENUzYBgbhttEqplm5U3aksuwrquaa27GlRmMeDr
+b1mHFmmTLZTXqxoYAdEQhaxZ+S37mJKrkLv2NIrMriSgD1Q7uCsgPAODYq0rXoLTuoKW5ziLCZvRkznaP
+U+DHXM9bEV7BAAEzTmkgiIZHXXG433x57d5dWyWiUukoF1RbRFkcrlQpsZMwn7TCsmlMnhB2TPSbDY
+fnfPoc2YtXjNZDWoYRtezL38uB4kl88sYYV1yd3//sSrMeO9QY+uh65MaLtUmOvw5Vu2nHQb4RbItM8
+aNdGzLJymCtL6DzzmAtsjXXSoiYUjSfwwB6UilnoOYG0WWV2X/ekmOl50WtZLSGoMgsK6wnokR5oi h3
+Y3WmaNczQCTHStl/H7KTo8KEQ4z4mlefcsFS+/pzxZYQyizQRlEpAnbDrKozHAWIW667leSrKFNfDUl
+JrRAAcAhGpTdMhLFILIIwBfXne2qvON+C5CQq8uUlRSFNaE3HjaCZ9OlYn4uwcCz9QntT6vr1w83rTS
+ve1LbD0/XeyVbY9ISaP0pe9p3BI3ZbTxKbSyJ1VghJGU21SSCXKBEoDrpKaAptqjENvDyvHbRTs317j
+pi0qhu4IFDBUVi7WutshL2mMm0DcucN6Oq/KbHpCENUzYBgbhttEqplm5U3aksuwrquaa27GlRmMeDr
 4LA1KKGTASkL2DIZbHe9xinM0uiUSghByca5pm8LmdGhbHAZRAZyCdXdR2RXR5NWPnC6YyrmUI32qU2
 bLlm8livAyzHCesXEABOU1oocSvx05rpeXXhuLqSFWXgTIko1ojeSeV3Q46Iwcnh2SluvcTex1PlCp
 S241vPKvpdX9EJ3zhuOgMq3UZD21D4TX+Zp1vpylHGt5cTGdQW7Ce/PxxrxLTPR5vt+rimrm6t3kwui
-MbAneg4e6khO0ReukMQWCBrqt1lmmzGe9pfCmeqRJsAtV5bZX1zVyJjp2anKVrtcSU1yTat2JpKBbdN
-X23EruiHpbax9G5qRlFaeN0AXhOg43EzYGB0Dg+jhrCQwElvNePK/YYdxNQlNbPRNXl6i8bU/p9+W3c
-pMFYypmloADgIRqU5T2mhRG8/Fb1I03yyVBJMkCVCVKoDHbZKgzLhbMDzHsWjrW4+A57vSr2HaPVuqcN
+MbAneg4e6khO0ReukMQWCBrqt1lmmzGe9pfCmeqRJsAtV5bZX1zVyJjp2anKVrtcSU1yTat2JpKBbdNX
+23EruiHpbax9G5qRlFaeN0AXhOg43EzYGB0Dg+jhrCQwElvNePK/YYdxNQlNbPRNXl6i8bU/p9+W3cp
+MFYypmloADgIRqU5T2mhRG8/Fb1I03yyVBJMkCVCVKoDHbZKgzLhbMDzHsWjrW4+A57vSr2HaPVuqcN
 5X0rYu4WKoxubsrlCVBqcUyIaybB8i3e13n/+27un8l+CJy7Xiwc7bfRo302aeX/u8S1L1aLZrLPh19O
 Frd+7CU6T8Of9fTi9vIEBJyVxsZMZkF1kvbnKU4xdZK9czrVYY5VxNecyQFBiosipXJib114YEIGgmb
 V4YDBEDU4+GNv/5BNgsklUe324Vqb1Am9RzGSR8K1rh4rrkKkJz0KKO4ONhYOHfwvSguO1AEZ261x+u
@@ -602,7 +602,7 @@ cvk09KGKFLxGqRzwQ1BkdCC4XimilhVl8NCMFq5dwxGSiYqam6oiTJPcD20bIooVqUyncns88ll5Hj2d
 cNchb1wnZt4M8qn+s+5178mcvFwqKTJO2nH2WBpmd4NLJqhI+POXV4g9KS9D99e/kmdhN4Z/egyjgkwFd
 LvvTQKaLcUqiiamCOayqRdu+zZlTzsSehYfTllYdWTHjdRHHjnUcOqUgS7ysSSBntJ7btJFbaIKw0Kg
 jsYUowpsVlMYCBZOMD5Nnd1q4MwNNXIJ4aVBcMGmEmBvOtPXdMBOK7Eoyu/Hf1NFvflGy76ZWX7VUQSAA
-LKJGRBwF0tWUwCcBE9yoBQ86MDrIEvR5jfEFvaJwQligSjcnvKHJp+rJPGfw8CfAOd/G0GDcC0RI1FiEJj
+LKJGRBwF0tWUwCcBE9yoBQ86MDrIEvR5jfEFvaJwQligSjcnvKHJp+rJPGfw8CfAOd/G0GDoRI1FiEJj
 QFjIMxr18d8ZdXlYqElRdQIlJUUwDkhukQd3rjq+zyd1a+7LmWM9J7a9PNtwtdzPnet4mqWWzYWUZxh
 0gC4NGijZpw932R81WlQcQ8Habu1Sss72kF6ZleMBRv+A4nVPLddb5Zzz9G3nM0EezhLxunoWigonqa2
 tD0ENcNcK50pYos001+x9VlgfqS4R7ywkrmaAi5rcBDiXhjVW16bVueppQApKmAkuencVMpVs9N1ctN
@@ -649,11 +649,11 @@ vY1F2PhrBK60/Obdtu+55n5HfPH+RPmzWlSlLWTMyvLWF+imQL2tGXaln4lqtzzdRG8FVpqXglcBAwrY
 dfgaBCgbUg0MHBJ9W0eH3cfFqUCB9b8WKGMKZIOw5zhZTnykgwQoMiAhb3OaAACUqMAvyWhRxADApElq
 cyIKxUMQgE4+NVLzXd3y2NcySJRJKJUUDLl1FdhHExqFcXM6m9tCOvP7KXMg+wVjgpPYdHicLALq2Es3
 7qL9Z0giWJbjZZFvk59u4McBCWTDtuJrsNs5084qvhj5oQkIQHvNPUUoiEAyn6IyxMFwCLISRAJmKSQ
-8c516rjbCsqM+XBJO6XLNaeT54YVUpAykbhJFtYRCOAlbIzZPSEgvSg6b+YjnUp055yVa2r0nVSo31jR
-27rQL9DUMumu5+BFAn5X49Hfk0eIUuk3QjrwRCCVqkru8mPVrFwGnuWbaQqmma6WvxSsVW8hGpS9nh7L
+8c516rjbCsqM+XBJO6XLNaeT54YVUpAykbhJFtYRCOAlbIzZPSEgvSg6b+YjnUp055yVa2r0nVSo31j
+R27rQL9DUMumu5+BFAn5X49Hfk0eIUuk3QjrwRCCVqkru8mPVrFwGnuWbaQqmma6WvxSsVW8hGpS9nh7L
 Q4iX+9Zrvjd6yqzWWqEq0qJRaUbDH8sMJhTU2byfe3d2UkaBeXCpq9wC6OqTvF+JVda2GG+xffGpTQo6Z
-1KW8dU5takAlIkwBwoPV1JGrmciNjaHZ2WhKbiFVGjXXRVaZbNMjTSXxCWM6dBjR6Qp2zTVSsYyo6mBn
-cxGPG+ruOfGkZue2UKZVvsntgeO6uRle6qw0HCKQkkuqKSsjlegQQ0d8FCYZkE6govhYellI1nvML43a
+1KW8dU5takAlIkwBwoPV1JGrmciNjaHZ2WhKbiFVGjXXRVaZbNMjTSXxCWM6dBjR6Qp2zTVSsYyo6mBnc
+xGPG+ruOfGkZue2UKZVvsntgeO6uRle6qw0HCKQkkuqKSsjlegQQ0d8FCYZkE6govhYellI1nvML43a
 8wsI9vg66v+gJqivKFBTWeNHtAfo9uBv8C+YtHgujMO+Qtj2vP8BdCYMARF+je17IRCOCuYkQAOESZMV
 NaSHATX+jnrnrd63ywiiyQJRYpbQ3pPY1fgRzTpvrrUUHXZ0heW8v9Cu9vZfk0jy9Y4Rto78Mhw3hJe4
 4cj0ch7hKRKJ747+h99M3Xz79EsnHTT89svE9HP1dMrNz37Oe06H1FedyW7I/H7Tdlf+32Uea8dCZpnK
@@ -721,7 +721,6 @@ dmVydGVyLg==
 # --------------------------------------------------------------------------
 # CONFIGURATION & STATE
 # --------------------------------------------------------------------------
-# sidebar_state="expanded" ensures controls are visible by default
 st.set_page_config(layout="wide", page_title="Digital Flipboard", initial_sidebar_state="expanded")
 
 if 'message' not in st.session_state:
@@ -733,20 +732,71 @@ if 'message' not in st.session_state:
 with st.sidebar:
     st.header("Flipboard Controls")
     
-    # Message Input
-    new_msg = st.text_input("Message", value=st.session_state['message'], max_chars=200)
+    st.markdown("### 📝 Message Playlist")
+    # Using a text area for multiple lines (playlist)
+    playlist_input = st.text_area(
+        "Enter messages (one per line). The board will cycle through them.",
+        value=st.session_state.get('playlist_raw', "WELCOME TO OMNI BOARD\nINSPIRE FROM ANYWHERE"),
+        height=150
+    )
+    st.session_state['playlist_raw'] = playlist_input.upper()
     
+    # Process playlist into a list
+    # Filter out empty lines
+    playlist = [line.strip() for line in playlist_input.upper().split('\n') if line.strip()]
+    if not playlist:
+        playlist = [" "]
+
+    cycle_speed = st.slider("Cycle Speed (Seconds)", 3, 60, 10)
+
     st.markdown("---")
-    st.subheader("Display Configuration")
+    st.subheader("🎨 Art Presets")
+    col_art1, col_art2, col_art3 = st.columns(3)
+    
+    # Helper to generate block patterns
+    def generate_pattern(type, rows, cols):
+        if type == "OCEAN":
+            # Blue and Wave blocks
+            return "".join([random.choice("🟦🟦🟦🌊") for _ in range(rows*cols)])
+        elif type == "SUNRISE":
+            # Gradient approximation
+            colors = ["⬛", "🟥", "🟧", "🟨", "⬜"]
+            out = ""
+            for r in range(rows):
+                # Pick a color based on row height
+                idx = int((r / rows) * len(colors))
+                out += colors[idx] * cols
+            return out
+        elif type == "RAINBOW":
+            colors = ["🟥","🟧","🟨","🟩","🟦","🟪"]
+            out = ""
+            for r in range(rows):
+                c = colors[r % len(colors)]
+                out += c * cols
+            return out
+        return ""
+
+    if col_art1.button("Ocean"):
+        st.session_state['playlist_raw'] = generate_pattern("OCEAN", 6, 22)
+        st.rerun()
+    if col_art2.button("Sunrise"):
+        st.session_state['playlist_raw'] = generate_pattern("SUNRISE", 6, 22)
+        st.rerun()
+    if col_art3.button("Rainbow"):
+        st.session_state['playlist_raw'] = generate_pattern("RAINBOW", 6, 22)
+        st.rerun()
+
+    st.markdown("---")
+    st.subheader("⚙️ Configuration")
     rows = st.number_input("Rows", min_value=1, max_value=20, value=6)
     cols = st.number_input("Columns", min_value=1, max_value=50, value=22)
     
     st.markdown("---")
-    st.subheader("Sound")
+    st.subheader("🔊 Sound")
     enable_sound = st.checkbox("Enable Sound", value=True)
 
     st.markdown("---")
-    st.subheader("Rich Style Options")
+    st.subheader("✨ Style Options")
     
     # Font Settings
     font_family = st.selectbox("Font Type", ["Courier New", "Arial", "Roboto", "Times New Roman", "Verdana", "Impact"])
@@ -762,39 +812,46 @@ with st.sidebar:
     with col2:
         flap_color = st.color_picker("Flap Color", "#1E1E1E")
         
-    st.info("Double-click the board background to toggle Full Screen mode.")
+    st.success("To enable sound: Click the board once after loading.")
+    st.info("Double-click to toggle Full Screen.")
 
 # --------------------------------------------------------------------------
-# LOGIC: JUSTIFICATION & PADDING
+# LOGIC: MESSAGE PADDING & FORMATTING
 # --------------------------------------------------------------------------
-# Logic to pad the message based on justification selection
-clean_msg = new_msg.upper().strip()
-target_len = rows * cols
-final_message = ""
+# We format the playlist in Python to ensure it fits the grid perfectly
+formatted_playlist = []
 
-# Split message into chunks of 'cols' length
-chunks = [clean_msg[i:i+cols] for i in range(0, len(clean_msg), cols)]
-
-# Pad the remaining cells
-if len(chunks) < rows:
-    chunks += [""] * (rows - len(chunks))
-
-for chunk in chunks:
-    chunk = chunk[:cols] # Truncate if too long
-    if justification == "Center":
-        pad_len = cols - len(chunk)
-        left_pad = pad_len // 2
-        right_pad = pad_len - left_pad
-        final_message += (" " * left_pad) + chunk + (" " * right_pad)
-    elif justification == "Right":
-        pad_len = cols - len(chunk)
-        final_message += (" " * pad_len) + chunk
-    else: # Left
-        final_message += chunk.ljust(cols)
-
-# Update Session State
-if final_message != st.session_state['message']:
-    st.session_state['message'] = final_message
+for msg in playlist:
+    # 1. Truncate if total length exceeds grid
+    if len(msg) > (rows * cols):
+        msg = msg[:rows*cols]
+        
+    # 2. Pad logic
+    final_msg = ""
+    # Split by explicit newlines if user typed them in a single line (rare but possible)
+    # But usually we treat the whole string as one block. 
+    # Let's chunk it by columns.
+    chunks = [msg[i:i+cols] for i in range(0, len(msg), cols)]
+    
+    # Fill remaining rows with empty strings
+    if len(chunks) < rows:
+        chunks += [""] * (rows - len(chunks))
+        
+    for chunk in chunks:
+        # Ensure chunk is exactly col width
+        chunk = chunk[:cols] 
+        if justification == "Center":
+            pad_len = cols - len(chunk)
+            left_pad = pad_len // 2
+            right_pad = pad_len - left_pad
+            final_msg += (" " * left_pad) + chunk + (" " * right_pad)
+        elif justification == "Right":
+            pad_len = cols - len(chunk)
+            final_msg += (" " * pad_len) + chunk
+        else: # Left
+            final_msg += chunk.ljust(cols)
+            
+    formatted_playlist.append(final_msg)
 
 # --------------------------------------------------------------------------
 # THE FLIPBOARD ENGINE (HTML/CSS/JS)
@@ -825,7 +882,6 @@ html_code = f"""
             height: 100vh;
             font-family: var(--font-family);
             overflow: hidden;
-            /* Allow double click selection prevention */
             user-select: none;
         }}
 
@@ -889,29 +945,48 @@ html_code = f"""
 
         @keyframes flip-top {{ 100% {{ transform: rotateX(-90deg); }} }}
         @keyframes flip-bottom {{ 0% {{ transform: rotateX(90deg); }} 100% {{ transform: rotateX(0deg); }} }}
+        
+        /* Audio Init Overlay */
+        #audio-init {{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #555;
+            font-size: 10px;
+            opacity: 0.5;
+            pointer-events: none;
+        }}
     </style>
 </head>
-<body ondblclick="toggleFullScreen()">
+<body ondblclick="toggleFullScreen()" onclick="initAudioContext()">
+    <div id="audio-init">Click anywhere to enable sound</div>
     <div id="board-container" title="Double Click for Full Screen"></div>
 
     <script>
-        const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&?.:-";
+        // Character Set including emojis for Art Mode
+        const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&?.:-🟥🟧🟨🟩🟦🟪⬛⬜🟫🌊";
         const ROWS = {rows};
         const COLS = {cols};
-        const TARGET_MESSAGE = "{final_message}"; 
+        const PLAYLIST = {formatted_playlist};
+        const CYCLE_SPEED = {cycle_speed * 1000};
         const SOUND_ENABLED = {str(enable_sound).lower()};
         
-        // Sound Configuration (Using MP4/AAC mime type based on file header)
+        // Sound Configuration
         const AUDIO_SRC = "data:audio/mp4;base64,{FLIP_SOUND_B64.replace('\n', '')}";
+        let audioContextAllowed = false;
 
-        function playClick() {{
-            if (!SOUND_ENABLED) return;
-            const audio = new Audio(AUDIO_SRC);
-            audio.volume = 0.1; 
-            audio.play().catch(e => console.log("Audio autoplay blocked", e));
+        function initAudioContext() {{
+            audioContextAllowed = true;
+            document.getElementById('audio-init').style.display = 'none';
         }}
 
-        // FULL SCREEN TOGGLE LOGIC
+        function playClick() {{
+            if (!SOUND_ENABLED || !audioContextAllowed) return;
+            const audio = new Audio(AUDIO_SRC);
+            audio.volume = 0.1; 
+            audio.play().catch(e => console.log("Audio block", e));
+        }}
+
         function toggleFullScreen() {{
             if (!document.fullscreenElement) {{
                 document.documentElement.requestFullscreen();
@@ -938,7 +1013,8 @@ html_code = f"""
             }}
 
             setTarget(char) {{
-                if (!CHARS.includes(char)) char = " ";
+                // If char isn't in our list, default to space
+                if (!CHARS.includes(char) && !isEmoji(char)) char = " ";
                 this.targetChar = char;
                 if (this.currentChar !== this.targetChar && !this.isFlipping) {{
                     this.flip();
@@ -955,6 +1031,9 @@ html_code = f"""
                 playClick();
 
                 let currentIndex = CHARS.indexOf(this.currentChar);
+                // Handle case where char isn't found
+                if (currentIndex === -1) currentIndex = 0;
+
                 let nextIndex = (currentIndex + 1) % CHARS.length;
                 let nextChar = CHARS[nextIndex];
 
@@ -974,18 +1053,26 @@ html_code = f"""
                     this.element.classList.remove('flipping');
 
                     if (this.currentChar !== this.targetChar) {{
+                        // Faster flipping for art/emojis to load quicker
                         setTimeout(() => this.flip(), 20); 
                     }} else {{
                         this.isFlipping = false;
                     }}
-                }}, 300); 
+                }}, 150); // Faster animation speed (150ms)
             }}
         }}
+        
+        // Helper to detect if a char is likely an emoji (simple check)
+        function isEmoji(char) {{
+            return /\\p{{Extended_Pictographic}}/u.test(char);
+        }}
+
+        let grid = [];
 
         function initBoard() {{
             const container = document.getElementById('board-container');
             container.innerHTML = '';
-            let grid = [];
+            grid = [];
 
             for (let i = 0; i < ROWS * COLS; i++) {{
                 const div = document.createElement('div');
@@ -993,20 +1080,33 @@ html_code = f"""
                 container.appendChild(div);
                 grid.push(new SplitFlap(div));
             }}
+            
+            // Start the cycle loop
+            cycleMessages();
+        }}
 
-            setTimeout(() => {{
-                let paddedMessage = TARGET_MESSAGE;
-                // Ensure message fits
-                if (paddedMessage.length < ROWS * COLS) {{
-                    paddedMessage = paddedMessage.padEnd(ROWS * COLS, " ");
+        let msgIndex = 0;
+        function cycleMessages() {{
+            if (PLAYLIST.length === 0) return;
+            
+            const msg = PLAYLIST[msgIndex];
+            
+            // Spread message to grid
+            grid.forEach((flap, index) => {{
+                // Use grapheme splitter logic for emojis if needed, 
+                // but standard indexing usually works for simple emojis in modern JS
+                // We convert string to array to safely handle emoji characters as single units
+                const charArray = Array.from(msg);
+                if (index < charArray.length) {{
+                    flap.setTarget(charArray[index]);
+                }} else {{
+                    flap.setTarget(" ");
                 }}
-                
-                grid.forEach((flap, index) => {{
-                    if (index < paddedMessage.length) {{
-                        flap.setTarget(paddedMessage[index]);
-                    }}
-                }});
-            }}, 500);
+            }});
+
+            msgIndex = (msgIndex + 1) % PLAYLIST.length;
+            
+            setTimeout(cycleMessages, CYCLE_SPEED);
         }}
 
         initBoard();
@@ -1015,19 +1115,31 @@ html_code = f"""
 </html>
 """
 
-# Standard Streamlit padding removal, but leaving header/footer visibility normal
 st.markdown("""
 <style>
     .block-container {
-        padding-top: 0rem;
-        padding-bottom: 0rem;
-        padding-left: 0rem;
-        padding-right: 0rem;
+        padding: 0 !important;
         max-width: 100%;
     }
     iframe {
         width: 100%;
         border: none;
+        display: block;
+    }
+    /* Hide Streamlit Footer */
+    footer {visibility: hidden;}
+    
+    /* Full Screen Button Overlay */
+    .fullscreen-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        opacity: 0.3;
+        transition: opacity 0.3s;
+    }
+    .fullscreen-btn:hover {
+        opacity: 1;
     }
 </style>
 """, unsafe_allow_html=True)
