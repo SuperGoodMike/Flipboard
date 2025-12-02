@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import math
 
 # --------------------------------------------------------------------------
 # AUDIO DATA (MP4/AAC)
@@ -548,31 +549,31 @@ ep0Od+plrU4jShLxEikQoKcxYCykGSAC+q+MjfPlzvNpkvcl1WqQADWhCCeFYQi5GkT9Wz+Bkcp5dVfZ
 aD1bk2vJ8f0uD5R+krnfnzf7TrrZcRiU8Am/SMukC35Tey4AgAWGSGo7Oec5By0zXik5AkJOltV8o1h
 gMls3Qs0V7DvpkiyQY0QxBbIotf1T4ba57qbvHe0jV3k9ORgp2tC2uiibOlcwVFEt8+lbmjAltYPS84
 L8R3U/rsQMX6e4h1nNOiBzBHkQoT1vM/Bq/iGLcYx1Jpuq8NnZMhiFYEdVCe3Fb6rABetBxcMTelgWd
-ZfCSAA4hGpTVOZ6CYSBYZDES/i8lUrrxU3eISJKQioJQNt7rXzq17t0S3+VY3zVp6sj7cZii8Bzas52
-0r4iUT2XXSqIK5q5QfPRVL7cO7Ak806YBEx2y4zBZo560dDs2a/CwDfHQWPhjsWbFrQ5SU2ziAJT4NO
-slb+GTkwFbC1521DrpAokzxaR8E2yTZPn3ouxH542pK03qQts2JLNEM/c/cafjU3S9t0emxqnYvCZqb1
-mHFmmTLZTXqxoYAdEQhaxZ+S37mJKrkLv2NIrMriSgD1Q7uCsgPAODYq0rXoLTuoKW5ziLCZvRkznaP
-U+DHXM9bEV7BAAEzTmkgiIZHXXG433x57d5dWyWiUukoF1RbRFkcrlQpsZMwn7TCsmlMnhB2TPSbDY
-fnfPoc2YtXjNZDWoYRtezL38uB4kl88sYYV1yd3//sSrMeO9QY+uh65MaLtUmOvw5Vu2nHQb4RbItM8
-aNdGzLJymCtL6DzzmAtsjXXSoiYUjSfwwB6UilnoOYG0WWV2X/ekmOl50WtZLSGoMgsK6wnokR5oi h3
-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
+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
-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
+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
@@ -591,17 +592,17 @@ qyx1T0Z3ofa0zd70zNXJj4TECOr/l5iwqYaIxhxYCbBwpnGXdbsT7t9cNz86OGHAqmkqtG/RJXPViuul
 HBzpYCruRrJjaF57uC4130S2vSAU6apgkylDokNHUpqYHNVXklisx01mAd18XbHeNnr8WyeCWtFjxXo
 AZQHCEalK2Gps9CiJ11I1TfXd1CSpKvLgiUBgV5znlnauvWasJMl9WJJfkZ1t3p3KkGRqqeA+6nMt+lO
 vuW4o1NvrTjYxASQMRsFYkks3PUwytwtYvt8gOsOog6otujRXbl6SfCxB5Uy4UUvMyuS1uo+T+5vDbI
-BP3ZNKzTVPx791TeCWrLPjTOU5+WSQZITBSwTFt81Wcq4XDptt4W4ZxMMjqe2miWhP22aAsmrPYe0sneW
-q8bZpyeu6Jqblu3JozxWUM/NNzvmuvivurwuWNlt6LZhZLt23hFYlVQk9E9c9BGUhlHBMKslnFzSXMq
+BP3ZNKzTVPx791TeCWrLPjTOU5+WSQZITBSwTFt81Wcq4XDptt4W4ZxMMjqe2miWhP22aAsmrPYe0sne
+Wq8bZpyeu6Jqblu3JozxWUM/NNzvmuvivurwuWNlt6LZhZLt23hFYlVQk9E9c9BGUhlHBMKslnFzSXMq
 F0hfAC9i+ePhIgwfFfwTtLuSK7XU5RwgAAlxFT4MzECRAEfrqrkm9bZKWzSUuVBeQqUN4k4l0wviKsuN
 UrXxXUhMg9b9+bwtUfse88asuc38vfn5OyYpjJaSHPJMS4GoYtRwRpQ13iXguRWp5pK21FtCZxL4zsmL
 DOjJ4LKFHIYIjdGEDLu/NPGuSnk3sVcIvtehKaG9D6KFeSItqcAVYBbmS/CvJ/JJv1WQR03XKtR2312
 cvk09KGKFLxGqRzwQ1BkdCC4XimilhVl8NCMFq5dwxGSiYqam6oiTJPcD20bIooVqUyncns88ll5Hj2dN
 7CmSmqowYMFy/bOI/LRWGZUhR/HgISqUjUmVAmSgTE1xKklFJSIQQgioSqweA2XM+5+l5fT4M35n1LhP
 cNchb1wnZt4M8qn+s+5178mcvFwqKTJO2nH2WBpmd4NLJqhI+POXV4g9KS9D99e/kmdhN4Z/egyjgkwFd
-LvvTQKaLcUqiiamCOayqRdu+zZlTzsSehYfTllYdWTHjdRHHjnUcOqUgS7ysSSBntJ7btJFbaIKw0Kgj
-sYUowpsVlMYCBZOMD5Nnd1q4MwNNXIJ4aVBcMGmEmBvOtPXdMBOK7Eoyu/Hf1NFvflGy76ZWX7VUQSAA
-LKJGRBwF0tWUwCcBE9yoBQ86MDrIEvR5jfEFvaJwQligSjcnvKHJp+rJPGfw8CfAOd/G0GDoRI1FiEJj
+LvvTQKaLcUqiiamCOayqRdu+zZlTzsSehYfTllYdWTHjdRHHjnUcOqUgS7ysSSBntJ7btJFbaIKw0Kg
+jsYUowpsVlMYCBZOMD5Nnd1q4MwNNXIJ4aVBcMGmEmBvOtPXdMBOK7Eoyu/Hf1NFvflGy76ZWX7VUQSAA
+LKJGRBwF0tWUwCcBE9yoBQ86MDrIEvR5jfEFvaJwQligSjcnvKHJp+rJPGfw8CfAOd/G0GDcC0RI1FiEJj
 QFjIMxr18d8ZdXlYqElRdQIlJUUwDkhukQd3rjq+zyd1a+7LmWM9J7a9PNtwtdzPnet4mqWWzYWUZxh
 0gC4NGijZpw932R81WlQcQ8Habu1Sss72kF6ZleMBRv+A4nVPLddb5Zzz9G3nM0EezhLxunoWigonqa2
 tD0ENcNcK50pYos001+x9VlgfqS4R7ywkrmaAi5rcBDiXhjVW16bVueppQApKmAkuencVMpVs9N1ctN
@@ -720,13 +721,11 @@ dmVydGVyLg==
 # --------------------------------------------------------------------------
 # CONFIGURATION & STATE
 # --------------------------------------------------------------------------
-# CHANGED: 'expanded' ensures the sidebar is visible by default
+# sidebar_state="expanded" ensures controls are visible by default
 st.set_page_config(layout="wide", page_title="Digital Flipboard", initial_sidebar_state="expanded")
 
 if 'message' not in st.session_state:
     st.session_state['message'] = "WELCOME TO OMNI BOARD"
-if 'theme' not in st.session_state:
-    st.session_state['theme'] = 'black'
 
 # --------------------------------------------------------------------------
 # ADMIN PANEL (Sidebar)
@@ -734,19 +733,68 @@ if 'theme' not in st.session_state:
 with st.sidebar:
     st.header("Flipboard Controls")
     
-    new_msg = st.text_input("Message", value=st.session_state['message'], max_chars=132)
-    if new_msg != st.session_state['message']:
-        st.session_state['message'] = new_msg.upper()
-        
+    # Message Input
+    new_msg = st.text_input("Message", value=st.session_state['message'], max_chars=200)
+    
     st.markdown("---")
-    st.subheader("Display Settings")
+    st.subheader("Display Configuration")
     rows = st.number_input("Rows", min_value=1, max_value=20, value=6)
     cols = st.number_input("Columns", min_value=1, max_value=50, value=22)
     
-    theme_val = st.selectbox("Theme", ["Vestaboard Black", "Vestaboard White"])
-    st.session_state['theme'] = "black" if "Black" in theme_val else "white"
+    st.markdown("---")
+    st.subheader("Sound")
+    enable_sound = st.checkbox("Enable Sound", value=True)
+
+    st.markdown("---")
+    st.subheader("Rich Style Options")
     
-    st.info("Tip: Close this sidebar using the 'X' to see the board in Full Screen.")
+    # Font Settings
+    font_family = st.selectbox("Font Type", ["Courier New", "Arial", "Roboto", "Times New Roman", "Verdana", "Impact"])
+    font_size_mult = st.slider("Font Size Scaling", 0.5, 1.5, 1.0)
+    is_bold = st.checkbox("Bold Text", value=False)
+    is_italic = st.checkbox("Italic Text", value=False)
+    justification = st.selectbox("Justification", ["Left", "Center", "Right"])
+    
+    # Colors
+    col1, col2 = st.columns(2)
+    with col1:
+        text_color = st.color_picker("Text Color", "#F0F0F0")
+    with col2:
+        flap_color = st.color_picker("Flap Color", "#1E1E1E")
+        
+    st.info("Double-click the board background to toggle Full Screen mode.")
+
+# --------------------------------------------------------------------------
+# LOGIC: JUSTIFICATION & PADDING
+# --------------------------------------------------------------------------
+# Logic to pad the message based on justification selection
+clean_msg = new_msg.upper().strip()
+target_len = rows * cols
+final_message = ""
+
+# Split message into chunks of 'cols' length
+chunks = [clean_msg[i:i+cols] for i in range(0, len(clean_msg), cols)]
+
+# Pad the remaining cells
+if len(chunks) < rows:
+    chunks += [""] * (rows - len(chunks))
+
+for chunk in chunks:
+    chunk = chunk[:cols] # Truncate if too long
+    if justification == "Center":
+        pad_len = cols - len(chunk)
+        left_pad = pad_len // 2
+        right_pad = pad_len - left_pad
+        final_message += (" " * left_pad) + chunk + (" " * right_pad)
+    elif justification == "Right":
+        pad_len = cols - len(chunk)
+        final_message += (" " * pad_len) + chunk
+    else: # Left
+        final_message += chunk.ljust(cols)
+
+# Update Session State
+if final_message != st.session_state['message']:
+    st.session_state['message'] = final_message
 
 # --------------------------------------------------------------------------
 # THE FLIPBOARD ENGINE (HTML/CSS/JS)
@@ -760,17 +808,12 @@ html_code = f"""
         :root {{
             --bg-color: #111;
             --bezel-color: #0a0a0a;
-            --flap-bg: #1e1e1e;
-            --text-color: #f0f0f0;
+            --flap-bg: {flap_color};
+            --text-color: {text_color};
+            --font-family: '{font_family}', monospace;
+            --font-weight: {'bold' if is_bold else 'normal'};
+            --font-style: {'italic' if is_italic else 'normal'};
             --shadow-intensity: 0.6;
-        }}
-
-        body.theme-white {{
-            --bg-color: #f4f4f4;
-            --bezel-color: #e0e0e0;
-            --flap-bg: #ffffff;
-            --text-color: #222;
-            --shadow-intensity: 0.2;
         }}
 
         body {{
@@ -780,8 +823,10 @@ html_code = f"""
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: var(--font-family);
             overflow: hidden;
+            /* Allow double click selection prevention */
+            user-select: none;
         }}
 
         #board-container {{
@@ -794,14 +839,17 @@ html_code = f"""
             gap: 4px;
             perspective: 1000px;
             grid-template-columns: repeat({cols}, 1fr); 
+            cursor: pointer;
         }}
 
         .split-flap {{
             position: relative;
-            width: 40px; 
-            height: 60px;
-            font-size: 35px;
-            line-height: 60px;
+            width: {40 * font_size_mult}px; 
+            height: {60 * font_size_mult}px;
+            font-size: {35 * font_size_mult}px;
+            line-height: {60 * font_size_mult}px;
+            font-weight: var(--font-weight);
+            font-style: var(--font-style);
             text-align: center;
             color: var(--text-color);
             background-color: var(--flap-bg);
@@ -843,24 +891,35 @@ html_code = f"""
         @keyframes flip-bottom {{ 0% {{ transform: rotateX(90deg); }} 100% {{ transform: rotateX(0deg); }} }}
     </style>
 </head>
-<body class="theme-{st.session_state['theme']}">
-    <div id="board-container"></div>
+<body ondblclick="toggleFullScreen()">
+    <div id="board-container" title="Double Click for Full Screen"></div>
 
     <script>
         const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&?.:-";
         const ROWS = {rows};
         const COLS = {cols};
-        const TARGET_MESSAGE = "{st.session_state['message']}"; 
+        const TARGET_MESSAGE = "{final_message}"; 
+        const SOUND_ENABLED = {str(enable_sound).lower()};
         
         // Sound Configuration (Using MP4/AAC mime type based on file header)
         const AUDIO_SRC = "data:audio/mp4;base64,{FLIP_SOUND_B64.replace('\n', '')}";
 
-        // Polyphonic Sound Engine
-        // Allows multiple clicks to overlap without cutting each other off
         function playClick() {{
+            if (!SOUND_ENABLED) return;
             const audio = new Audio(AUDIO_SRC);
-            audio.volume = 0.1; // Low volume per click to prevent distortion
+            audio.volume = 0.1; 
             audio.play().catch(e => console.log("Audio autoplay blocked", e));
+        }}
+
+        // FULL SCREEN TOGGLE LOGIC
+        function toggleFullScreen() {{
+            if (!document.fullscreenElement) {{
+                document.documentElement.requestFullscreen();
+            }} else {{
+                if (document.exitFullscreen) {{
+                    document.exitFullscreen();
+                }}
+            }}
         }}
 
         class SplitFlap {{
@@ -893,7 +952,6 @@ html_code = f"""
                 }}
                 this.isFlipping = true;
                 
-                // Play sound on every flip
                 playClick();
 
                 let currentIndex = CHARS.indexOf(this.currentChar);
@@ -937,7 +995,12 @@ html_code = f"""
             }}
 
             setTimeout(() => {{
-                let paddedMessage = TARGET_MESSAGE.padEnd(ROWS * COLS, " ");
+                let paddedMessage = TARGET_MESSAGE;
+                // Ensure message fits
+                if (paddedMessage.length < ROWS * COLS) {{
+                    paddedMessage = paddedMessage.padEnd(ROWS * COLS, " ");
+                }}
+                
                 grid.forEach((flap, index) => {{
                     if (index < paddedMessage.length) {{
                         flap.setTarget(paddedMessage[index]);
@@ -952,7 +1015,7 @@ html_code = f"""
 </html>
 """
 
-# CHANGED: Removed the 'header {visibility: hidden;}' line to restore access.
+# Standard Streamlit padding removal, but leaving header/footer visibility normal
 st.markdown("""
 <style>
     .block-container {
@@ -966,8 +1029,6 @@ st.markdown("""
         width: 100%;
         border: none;
     }
-    /* Header visibility restored */
-    footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
