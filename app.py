@@ -7,27 +7,50 @@ import random
 # --------------------------------------------------------------------------
 st.set_page_config(layout="wide", page_title="Digital Flipboard", initial_sidebar_state="expanded")
 
+# Initialize Session State for Playlist
+if 'playlist_items' not in st.session_state:
+    st.session_state['playlist_items'] = ["WELCOME TO OMNI BOARD", "INSPIRE FROM ANYWHERE", "NOSTALGIA REIMAGINED"]
+
 # --------------------------------------------------------------------------
 # ADMIN PANEL (Sidebar)
 # --------------------------------------------------------------------------
 with st.sidebar:
     st.header("Flipboard Controls")
     
+    # --- Message Playlist Manager ---
     st.markdown("### 📝 Message Playlist")
-    playlist_input = st.text_area(
-        "Enter messages (one per line).",
-        value=st.session_state.get('playlist_raw', "WELCOME TO OMNI BOARD\nINSPIRE FROM ANYWHERE\nNOSTALGIA REIMAGINED"),
-        height=150
-    )
-    st.session_state['playlist_raw'] = playlist_input.upper()
     
-    playlist = [line.strip() for line in playlist_input.upper().split('\n') if line.strip()]
-    if not playlist:
-        playlist = [" "]
+    # Display Dynamic Input Boxes
+    updated_playlist = []
+    for i, item in enumerate(st.session_state['playlist_items']):
+        val = st.text_input(f"Message {i+1}", value=item, key=f"msg_input_{i}")
+        updated_playlist.append(val.upper())
+    
+    # Update state with current inputs
+    st.session_state['playlist_items'] = updated_playlist
+
+    # Playlist Action Buttons
+    col_add, col_reset = st.columns(2)
+    if col_add.button("➕ Add Message"):
+        st.session_state['playlist_items'].append("")
+        st.rerun()
+        
+    if col_reset.button("🗑️ Clear All"):
+        st.session_state['playlist_items'] = [" "]
+        st.rerun()
 
     cycle_speed = st.slider("Cycle Speed (Seconds)", 2, 60, 8)
 
     st.markdown("---")
+    
+    # --- Configuration ---
+    st.subheader("⚙️ Grid Size")
+    rows = st.number_input("Rows", min_value=1, max_value=20, value=6)
+    cols = st.number_input("Columns", min_value=1, max_value=50, value=22)
+    
+    st.markdown("---")
+
+    # --- Art Presets ---
     st.subheader("🎨 Art Presets")
     col_art1, col_art2, col_art3 = st.columns(3)
     
@@ -50,25 +73,22 @@ with st.sidebar:
             return out
         return ""
 
+    # These buttons overwrite the playlist with a single Art Frame
     if col_art1.button("Ocean"):
-        st.session_state['playlist_raw'] = generate_pattern("OCEAN", 6, 22)
+        st.session_state['playlist_items'] = [generate_pattern("OCEAN", rows, cols)]
         st.rerun()
     if col_art2.button("Sunrise"):
-        st.session_state['playlist_raw'] = generate_pattern("SUNRISE", 6, 22)
+        st.session_state['playlist_items'] = [generate_pattern("SUNRISE", rows, cols)]
         st.rerun()
     if col_art3.button("Rainbow"):
-        st.session_state['playlist_raw'] = generate_pattern("RAINBOW", 6, 22)
+        st.session_state['playlist_items'] = [generate_pattern("RAINBOW", rows, cols)]
         st.rerun()
 
     st.markdown("---")
-    st.subheader("⚙️ Configuration")
-    rows = st.number_input("Rows", min_value=1, max_value=20, value=6)
-    cols = st.number_input("Columns", min_value=1, max_value=50, value=22)
     
-    st.markdown("---")
+    # --- Style Options ---
     st.subheader("✨ Style Options")
     
-    # Robust Font Stack to prevent missing glyphs
     font_family = st.selectbox("Font Type", [
         "Courier New, monospace", 
         "Arial, sans-serif", 
@@ -77,7 +97,7 @@ with st.sidebar:
         "Segoe UI Emoji, Apple Color Emoji, sans-serif" 
     ])
     
-    # Style Toggles
+    font_size_mult = st.slider("Font Size Adjustment", 0.5, 2.0, 1.0, help="Scale text size up or down")
     is_bold = st.checkbox("Bold Text", value=True)
     is_italic = st.checkbox("Italic Text", value=False)
     justification = st.selectbox("Justification", ["Left", "Center", "Right"])
@@ -93,9 +113,14 @@ with st.sidebar:
 # --------------------------------------------------------------------------
 # LOGIC: MESSAGE PADDING & FORMATTING
 # --------------------------------------------------------------------------
+# Clean list: remove empty strings if any
+clean_playlist = [msg for msg in st.session_state['playlist_items'] if msg]
+if not clean_playlist:
+    clean_playlist = [" "]
+
 formatted_playlist = []
 
-for msg in playlist:
+for msg in clean_playlist:
     # Truncate if message is too long for the entire board
     if len(msg) > (rows * cols):
         msg = msg[:rows*cols]
@@ -133,7 +158,7 @@ html_code = f"""
     <meta charset="UTF-8">
     <style>
         :root {{
-            --bg-color: #000; /* Background behind the board */
+            --bg-color: #000; 
             --bezel-color: #0a0a0a;
             --flap-bg: {flap_color};
             --text-color: {text_color};
@@ -141,6 +166,7 @@ html_code = f"""
             --font-weight: {'bold' if is_bold else 'normal'};
             --font-style: {'italic' if is_italic else 'normal'};
             --shadow-intensity: 0.4;
+            --font-scale: {font_size_mult};
         }}
 
         body {{
@@ -158,24 +184,18 @@ html_code = f"""
 
         #board-container {{
             background-color: var(--bezel-color);
-            /* Padding acts as the Bezel */
             padding: 1.5vmin; 
             border-radius: 1vmin;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             border: 2px solid #222;
-            
             display: grid;
-            /* GAP between letters */
             gap: 0.25vmin; 
-            
             grid-template-columns: repeat({cols}, 1fr); 
             grid-template-rows: repeat({rows}, 1fr);
             
-            /* SCALING LOGIC: Fill 95% of Viewport width or height, keeping aspect ratio */
+            /* SCALING: Fill 95% of Viewport */
             width: 95vw;
             height: 95vh;
-            
-            /* This ensures individual cells don't get distorted */
             aspect-ratio: {cols} / {rows * 1.2}; 
             max-width: 100%;
             max-height: 100%;
@@ -190,19 +210,19 @@ html_code = f"""
             color: var(--text-color);
             border-radius: 0.4vmin;
             
-            /* Typography scaling based on container size */
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 4vmin; /* Responsive font size */
+            
+            /* Responsive font size multiplied by user slider */
+            font-size: calc(4vmin * var(--font-scale)); 
+            
             font-weight: var(--font-weight);
             font-style: var(--font-style);
-            
             box-shadow: inset 0 0 5px rgba(0,0,0, var(--shadow-intensity));
             overflow: hidden;
         }}
 
-        /* Mechanical Split Line */
         .split-flap::after {{
             content: '';
             position: absolute;
@@ -214,7 +234,6 @@ html_code = f"""
             z-index: 10;
         }}
 
-        /* Flap Anatomy */
         .top, .bottom, .next-top, .next-bottom {{
             position: absolute;
             left: 0;
@@ -225,36 +244,12 @@ html_code = f"""
             backface-visibility: hidden;
         }}
 
-        .top, .next-top {{ 
-            top: 0; 
-            border-radius: 0.4vmin 0.4vmin 0 0; 
-            transform-origin: bottom; 
-        }}
+        .top, .next-top {{ top: 0; border-radius: 0.4vmin 0.4vmin 0 0; transform-origin: bottom; }}
+        .bottom, .next-bottom {{ bottom: 0; border-radius: 0 0 0.4vmin 0.4vmin; transform-origin: top; }}
         
-        .bottom, .next-bottom {{ 
-            bottom: 0; 
-            border-radius: 0 0 0.4vmin 0.4vmin; 
-            transform-origin: top; 
-        }}
-        
-        /* Text Positioning inside flaps */
-        .top span, .next-top span {{ 
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-            height: 200%; 
-            transform: translateY(0); 
-        }}
-        
-        .bottom span, .next-bottom span {{ 
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-            height: 200%; 
-            transform: translateY(-50%); 
-        }}
+        .top span, .next-top span {{ display: flex; justify-content: center; align-items: center; height: 200%; transform: translateY(0); }}
+        .bottom span, .next-bottom span {{ display: flex; justify-content: center; align-items: center; height: 200%; transform: translateY(-50%); }}
 
-        /* Animation */
         .flipping .top {{ animation: flip-top 0.15s ease-in forwards; z-index: 3; }}
         .flipping .next-bottom {{ animation: flip-bottom 0.15s ease-out 0.15s forwards; z-index: 2; }}
 
@@ -266,8 +261,7 @@ html_code = f"""
     <div id="board-container" title="Double Click for Full Screen"></div>
 
     <script>
-        // SAFE CHARS: Used during the animation loop to prevent "missing glyph" icons.
-        // We only cycle through these clean characters visually.
+        // Safe alphabet for animation phase to prevent glitch glyphs
         const SAFE_CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         
         const ROWS = {rows};
@@ -308,10 +302,8 @@ html_code = f"""
             }}
 
             flip() {{
-                // Stop condition
                 if (this.currentChar === this.targetChar) {{
                     this.isFlipping = false;
-                    // Finalize DOM to ensure target is set correctly
                     this.updateDOM(this.targetChar, this.targetChar);
                     this.element.classList.remove('flipping');
                     return;
@@ -319,53 +311,31 @@ html_code = f"""
 
                 this.isFlipping = true;
 
-                // VISUAL LOGIC FIX:
-                // If we are animating, pick a random "Safe" character to show during the flip.
-                // This prevents the browser from rendering a '?' box if it passes through a weird symbol.
-                // If we are at the end, show the actual target.
-                
-                let nextVisualChar = "";
-                
-                // Are we one step away from target? (Simplified: just random noise until match)
-                // Actually, to simulate the mechanical wheel, we usually iterate index.
-                // But to fix the rendering bug, we will just pick a SAFE char for the animation frame
-                // unless it's the final frame.
-                
+                // Pick a visual character for the flip (noise) to prevent ? glitches
                 let currentIndex = SAFE_CHARS.indexOf(this.currentChar);
                 if (currentIndex === -1) currentIndex = 0;
                 let nextIndex = (currentIndex + 1) % SAFE_CHARS.length;
-                
-                // Intermediate character for the animation (The 'Blur')
-                nextVisualChar = SAFE_CHARS[nextIndex];
+                let nextVisualChar = SAFE_CHARS[nextIndex];
 
-                // Apply to DOM "Next" flaps
                 const nextTop = this.element.querySelector('.next-top span');
                 const nextBottom = this.element.querySelector('.next-bottom span');
                 nextTop.innerText = nextVisualChar;
                 nextBottom.innerText = nextVisualChar;
 
-                // Trigger CSS Animation
                 this.element.classList.add('flipping');
 
-                // Halfway through animation
                 setTimeout(() => {{
-                    // Update current visible flaps to the visual char
                     this.updateDOM(nextVisualChar, nextVisualChar);
                     this.currentChar = nextVisualChar;
-                    
                     this.element.classList.remove('flipping');
 
-                    // If the character we just landed on is NOT the target, flip again.
-                    // However, since we are cycling through SAFE_CHARS, we might never hit an Emoji target.
-                    // So we check: Is the target an Emoji/Special? If so, we just flip a few times then snap.
-                    
-                    // Hack: 10% chance to snap to target to prevent infinite loops on non-safe chars
+                    // Random chance to snap to target or keep spinning
                     if (Math.random() > 0.85 || this.currentChar === this.targetChar) {{
                          this.currentChar = this.targetChar;
                          this.updateDOM(this.targetChar, this.targetChar);
                          this.isFlipping = false;
                     }} else {{
-                        setTimeout(() => this.flip(), 60); // Speed of flip
+                        setTimeout(() => this.flip(), 60); 
                     }}
                 }}, 150);
             }}
@@ -398,8 +368,6 @@ html_code = f"""
         function cycleMessages() {{
             if (PLAYLIST.length === 0) return;
             const msg = PLAYLIST[msgIndex];
-            
-            // Use Array.from to handle Emojis correctly as single units
             const charArray = Array.from(msg);
             
             grid.forEach((flap, index) => {{
@@ -420,10 +388,8 @@ html_code = f"""
 </html>
 """
 
-# Streamlit Layout Tweaks
 st.markdown("""
 <style>
-    /* Remove all padding from Streamlit main container */
     .block-container {
         padding: 0 !important;
         margin: 0 !important;
@@ -435,9 +401,8 @@ st.markdown("""
         border: none;
         display: block;
     }
-    /* Hide footer */
     footer {visibility: hidden;}
-    /* Ensure header is hidden in full screen mode but accessible otherwise */
+    /* Show header only on hover */
     header {opacity: 0; transition: opacity 0.3s;}
     header:hover {opacity: 1;}
 </style>
