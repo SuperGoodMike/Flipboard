@@ -1,6 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import random
+import base64
+import os
 
 # --------------------------------------------------------------------------
 # CONFIGURATION & STATE
@@ -125,6 +127,10 @@ with st.sidebar:
     with col2:
         flap_color = st.color_picker("Flap Color", "#111111")
         
+    st.markdown("---")
+    st.subheader("🔊 Audio")
+    enable_sound = st.checkbox("Enable Flip Sound", value=True)
+
     st.info("Double-click the board to toggle Full Screen.")
 
 # --------------------------------------------------------------------------
@@ -187,6 +193,20 @@ for raw_msg in clean_playlist:
     final_string = final_string[:rows * cols]
     
     formatted_playlist.append(final_string)
+
+# --------------------------------------------------------------------------
+# LOAD AUDIO ASSET
+# --------------------------------------------------------------------------
+def get_base64_audio(file_path):
+    try:
+        with open(file_path, "rb") as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    except FileNotFoundError:
+        return None
+
+audio_b64 = get_base64_audio("Flip.m4a")  # Ensure Flip.m4a is in the same directory
+audio_js_var = f"'{audio_b64}'" if audio_b64 else "null"
 
 # --------------------------------------------------------------------------
 # THE FLIPBOARD ENGINE (HTML/CSS/JS)
@@ -310,6 +330,30 @@ html_code = f"""
         const COLS = {cols};
         const PLAYLIST = {formatted_playlist};
         const CYCLE_SPEED = {cycle_speed * 1000};
+        
+        // AUDIO SETUP
+        const SOUND_ENABLED = {str(enable_sound).lower()};
+        const AUDIO_DATA = {audio_js_var};
+        let flipAudio = null;
+        let lastSoundTime = 0;
+        
+        if (AUDIO_DATA) {{
+            flipAudio = new Audio("data:audio/mp4;base64," + AUDIO_DATA);
+            flipAudio.volume = 0.3; 
+        }}
+
+        function playFlipSound() {{
+            if (SOUND_ENABLED && flipAudio) {{
+                const now = Date.now();
+                // Throttle: limit sounds to avoid distortion/lag
+                if (now - lastSoundTime > 30) {{
+                    const sound = flipAudio.cloneNode();
+                    sound.volume = 0.15; 
+                    sound.play().catch(e => {{}});
+                    lastSoundTime = now;
+                }}
+            }}
+        }}
 
         function toggleFullScreen() {{
             if (!document.fullscreenElement) {{
@@ -350,6 +394,8 @@ html_code = f"""
                     this.element.classList.remove('flipping');
                     return;
                 }}
+                
+                playFlipSound();
 
                 this.isFlipping = true;
 
